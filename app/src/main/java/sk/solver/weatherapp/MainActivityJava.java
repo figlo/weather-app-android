@@ -2,19 +2,17 @@ package sk.solver.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.gson.Gson;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import sk.solver.weatherapp.databinding.ActivityMainBinding;
+import sk.solver.weatherapp.networking.WeatherClient;
+import sk.solver.weatherapp.networking.WeatherClientBuilder;
 
 public class MainActivityJava extends AppCompatActivity {
 
