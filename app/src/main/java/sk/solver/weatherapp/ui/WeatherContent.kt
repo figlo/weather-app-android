@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -18,6 +19,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -41,19 +43,18 @@ fun WeatherContent(
             label = {
                 Text("City")
             },
-            singleLine = true
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Search
+            ),
+            keyboardActions = KeyboardActions(
+                onSearch = {
+                    if (city.isNotBlank()) {
+                        onLoadWeather(city)
+                    }
+                }
+            )
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = {
-                onLoadWeather(city)
-            },
-            enabled = city.isNotBlank()
-        ) {
-            Text("Get weather")
-        }
 
         Spacer(modifier = Modifier.height(24.dp))
 
@@ -76,7 +77,7 @@ fun WeatherContent(
             }
 
             is WeatherUiState.Success -> {
-                WeatherResult(uiState.weather)
+                WeatherCard(uiState.weather)
             }
         }
     }
