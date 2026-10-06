@@ -1,4 +1,4 @@
-package sk.solver.weatherapp;
+package sk.solver.weatherapp.networking;
 
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
