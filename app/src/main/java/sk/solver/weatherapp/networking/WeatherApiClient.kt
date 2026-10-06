@@ -7,7 +7,7 @@ import sk.solver.weatherapp.models.WeatherResponse
 interface WeatherApiClient {
     @GET("weather")
     suspend fun getWeather(
-        @Query("q") cities: String,
+        @Query("q") city: String,
         @Query("units") units: String,
         @Query("appid") appId: String
     ): WeatherResponse
