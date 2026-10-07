@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="loading">Loading...</string>
+    <string name="city">City</string>
+    <string name="city_placeholder">Enter City</string>
+    <string name="error_city_not_found">City not found</string>
+    <string name="error_failed_to_load_weather">Failed to load weather</string>
 </resources>

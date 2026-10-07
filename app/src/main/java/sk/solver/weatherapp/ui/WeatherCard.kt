@@ -18,7 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import sk.solver.weatherapp.R
+import sk.solver.weatherapp.ui.model.WeatherError
 import sk.solver.weatherapp.ui.model.WeatherItem
 
 @Composable
@@ -56,7 +59,7 @@ fun WeatherCard(
 
                         Spacer(modifier = Modifier.width(12.dp))
 
-                        Text("Loading...")
+                        Text(stringResource(R.string.loading))
                     }
                 }
 
@@ -72,8 +75,12 @@ fun WeatherCard(
 
                     Spacer(modifier = Modifier.height(8.dp))
 
+                    val errorMessage = when (item.weatherError) {
+                        WeatherError.CityNotFound -> stringResource(R.string.error_city_not_found)
+                        WeatherError.Unknown      -> stringResource(R.string.error_failed_to_load_weather)
+                    }
                     Text(
-                        text = item.message,
+                        text = errorMessage,
                         color = MaterialTheme.colorScheme.error
                     )
                 }
@@ -90,11 +97,11 @@ private fun temperatureColor(temperature: Double): Color {
     val hot = Color(0xFFE53935)
 
     return when {
-        temperature <= -25 -> {
+        temperature <= -20 -> {
             lerp(
                 cold,
                 freezing,
-                ((temperature + 50) / 25).coerceIn(0.0, 1.0).toFloat()
+                ((temperature + 40) / 20).coerceIn(0.0, 1.0).toFloat()
             )
         }
 
@@ -102,15 +109,15 @@ private fun temperatureColor(temperature: Double): Color {
             lerp(
                 freezing,
                 neutral,
-                ((temperature + 25) / 25).coerceIn(0.0, 1.0).toFloat()
+                ((temperature + 20) / 20).coerceIn(0.0, 1.0).toFloat()
             )
         }
 
-        temperature <= 25 -> {
+        temperature <= 20 -> {
             lerp(
                 neutral,
                 warm,
-                (temperature / 25).coerceIn(0.0, 1.0).toFloat()
+                (temperature / 20).coerceIn(0.0, 1.0).toFloat()
             )
         }
 
@@ -118,7 +125,7 @@ private fun temperatureColor(temperature: Double): Color {
             lerp(
                 warm,
                 hot,
-                ((temperature - 25) / 25).coerceIn(0.0, 1.0).toFloat()
+                ((temperature - 20) / 20).coerceIn(0.0, 1.0).toFloat()
             )
         }
     }
