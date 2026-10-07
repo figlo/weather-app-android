@@ -1,9 +1,24 @@
-## Android Weather project to test your abilities
+# Weather App
 
-Podla toho ci vypracovavate toto zadanie na pohovore, alebo doma, vypracujte todo-on-site.md alebo todo-home.md.
+Android weather application implemented as part of the coding task.
 
------
+## Screenshot
 
-Depending on whether you are working on this task during an interview or at home, complete todo-on-site.md or todo-home.md.
+![Weather screen](screenshots/screenshot.png)
 
+## Implemented
+
+- Weather information for individual cities
+- Search for multiple cities separated by commas
+- Independent loading state for each city
+- City autocomplete suggestions loaded from a local file
+- Loading and error states
+
+## Tech stack
+
+- Kotlin
+- Jetpack Compose
+- Coroutines
+- Retrofit
+- OpenWeather API
 
