@@ -14,6 +14,6 @@ sealed interface WeatherItem {
 
     data class Error(
         val city: String,
-        val message: String
+        val weatherError: WeatherError,
     ) : WeatherItem
 }

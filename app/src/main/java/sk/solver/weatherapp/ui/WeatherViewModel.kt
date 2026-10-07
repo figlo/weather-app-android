@@ -13,6 +13,7 @@ import sk.solver.weatherapp.networking.WeatherClientBuilder
 import sk.solver.weatherapp.networking.WeatherRepository
 import sk.solver.weatherapp.ui.model.WeatherItem
 import sk.solver.weatherapp.ui.model.WeatherUiState
+import sk.solver.weatherapp.utils.getWeatherError
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -74,8 +75,7 @@ class WeatherViewModel : ViewModel() {
                                         ) {
                                             WeatherItem.Error(
                                                 city = city,
-                                                message = e.message
-                                                    ?: "Failed to load weather"
+                                                weatherError = getWeatherError(e)
                                             )
                                         } else {
                                             item
